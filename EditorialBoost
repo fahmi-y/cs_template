@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <!-- 12324561 -->
+    <meta charset="UTF-8">
+    <title>Editorial Boost</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    	padding: 0;
+      }
+
+      .creative-container {
+        background: #ffffff;
+        width: calc(100% - 1.6px);
+        min-width: 298.4px;
+        max-width: 478.4px;
+        border: 0.5px solid #DDDDDD;
+        margin: auto 0;
+        /*max-height: 500px;*/
+        height: 498px;
+        /*height: calc(100% - 1px);*/
+        overflow: hidden;
+        user-select: none;
+        text-decoration: none;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      /* Adjust image width based on viewport width */
+      .image-box {
+        margin: 0;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .image-box img {
+        /*width: 100%;*/
+        height: auto;
+        display: block;
+        max-width: 100%;
+        object-fit: contain;
+        /* Fills the container while preserving the aspect ratio */
+      }
+
+      /* Reduces image height for viewport widths over 300px */
+      @media (min-width: 301px) {
+        .image-box img {
+          max-height: 300px;
+          object-fit: cover;
+          /* Cuts off sides while fitting the image within the container */
+        }
+      }
+
+      .review-box {
+        font-family: "Open Sans Bold","Roboto","Helvetica Neue";
+        background-color: #E5F6FF;
+        border-radius: 4px;
+        color: #003452;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 15px;
+        margin: 8px;
+        padding: 4px 8px 4px 8px;
+        position: absolute;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+      }
+
+      .text-box{
+        background-color: #ffffff;
+        padding: 16px 16px 16px 16px;
+      }
+
+      .headline-rating-container{
+        height: 40px;
+        display: flex;
+      }
+
+      .headline-rating {
+        align-items: baseline;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .headline-text {
+        font-family: "Open Sans SemiBold","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        color: #3A3A3A;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 20px;
+        text-align: left;
+        user-select: none;
+        -webkit-user-select: none;
+        /*padding: 0px 0px 0px 16px;*/
+        white-space: normal !important;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+		line-clamp: 2;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+      }
+
+      .rating-box{
+        display: block;
+        width: 148px;
+        text-align: right;
+        /*padding: 0px 16px 0px 12px;*/
+
+      }
+      .rating-header {
+        font-family: "Open Sans Regular","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 20px;  
+        color: #757575;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .rating-input {
+        font-family: "Open Sans Bold","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 20px;
+        color: #006199;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .rating-100 {
+        font-family: "Open Sans Regular","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;  
+        color: #757575;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .body-text {
+        font-family: "Open Sans Regular","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        color: #3A3A3A;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: justify;       
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        margin-top: 8px;
+        /*padding: 8px 16px 8px 16px;*/
+        white-space: normal !important;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .body-copy {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 18px;
+        max-width: 100%;
+        /*padding: 8px 16px 8px 16px;*/
+        text-align: left;
+        text-decoration: none;
+        user-select: none;
+      }
+
+      .footer-box {
+        align-items: center;
+        background-color: #F5F5F5;
+        text-align: left;
+        height: 56px;
+        bottom: 0;
+        /*left: 0;*/
+        width: 100%;
+        display: flex;
+        position: absolute;
+        margin-top: 0px;
+        padding: 0 16px;
+        box-sizing: border-box;
+        /*border-radius: 0px 0px 8px 8px;*/
+      }
+
+      .authorImage {
+        width: 32px;
+        height: 32px;
+        float: left;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        background-color: #FFFFFF;
+        border-radius: 100px;
+      }
+
+      .sponsored {
+        font-family: "Open Sans Regular","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-weight: 400;
+        font-size: 11px;
+        text-align: left;
+        padding-left: 8px;
+        line-height: 15px;
+        color: #757575;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .cta-button {
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        width: 103px;
+        height: 42px;
+        background-color: #FFFFFF;
+        color: #027CC2;
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 8px;
+        text-align: center;
+        line-height: 18px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid #027CC2;
+      }
+
+      .cta-button:hover {
+        text-decoration: underline;
+        color: #007CC2;
+      }
+
+      .cover {object-fit: cover;}     
+
+      a {text-decoration: none;}
+
+    </style>  
+ </head>
+  
+ <body>
+    <div class="creative-container" id="creative-container">
+    <!--a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" target="_blank"-->      
+      <div class="image-box">
+        <div class="review-box">[%ArticleType%]</div>
+        <img class="cover" src="https://tpc.googlesyndication.com/simgad/12752986193293066251?" alt="Image" width="100%" height="100%">        
+      </div>
+      
+      <div class="text-box">
+        <div class="headline-rating-container">
+          <div class="headline-text">[%HeadlineText%]LDV T60 Max</div>
+          <div class="rating-box" id="rating-box" >
+            <span class="rating-header" id="rating-header" > Expert Rating</span> <br>
+            <span class="rating-input" id="rating-input" >78</span>
+            <span class="rating-100" id="rating-100" > /100</span>
+          </div>
+        </div>  
+        <div class="body-text">[%BodyText%]LDV T60 Max ute comes in for MY23 update that pushes up pricing for one of the most </div>
+      </div>
+    
+      <div class="footer-box">
+            
+        <img class="authorImage" src="https://editorial.pxcrush.net/carsales/general/editorial/profile-sam-charlwood.jpg" alt="authorImage">
+        <span class="sponsored"> [%Author%]<br> [%Promoted%]</span>
+         <a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" target="_blank">  
+          <button class="cta-button" onclick="placeholder">Read more</button>           
+        </a>
+      </div>      
+    <!--/a-->   
+    </div>
+	<img src="[%ThirdPartyImpression%]" width="0" height ="0" style="display:none;">   
+ 
+	<script>
+    console.log("start 9.59 p.m.");
+    let csmhDevice = "%%PATTERN:device%%";
+    let csmhNoRating =  "off";//"[%NoRating%]";
+    const widthOffset = 1; 
+    csmhDevice = csmhDevice.toLowerCase();
+    csmhNoRating = csmhNoRating.toLowerCase();
+
+		if(csmhNoRating == "on"){
+      csmhRemoveRating();          
+    }
+    
+    if (csmhDevice != "ios" && csmhDevice != "android") {
+      csmhResizeIframe();
+      //let listingFrameElement = document.getElementById("creative-container"); //window.frameElement; 
+      let listingFrameElement = parent.document.getElementsByClassName("iompba0 iompba3 _1lalutr1ei")[0]; //.clientWidth; 
+      console.log("listingFrameElement: " + listingFrameElement);
+      let resizeObserver = new ResizeObserver((entries) => {
+        for (entry of entries) {
+          //console.log('Height: ', entry.contentRect.height);
+          //console.log('Width:', entry.contentRect.width);
+          //console.log('boxElem Width w ParentNode:', boxElem.parentNode.clientWidth);
+          //console.log('boxElem Width:', boxElem.clientWidth);            
+          csmhResizeIframe();
+        } 
+      }); 
+      // observe the given element for changes 
+      resizeObserver.observe(listingFrameElement);    
+    }
+
+		function csmhResizeIframe(){
+			//expand ad to full width of screen
+      console.log("resize func called");
+			let csmhFrameElement = window.frameElement;
+			//console.log("csmhFrameElement: " + csmhFrameElement);
+      //console.log("csmhFrameElement.nodeName: "+ csmhFrameElement.nodeName);
+      let csmhDeviceWidth = window.screen.availWidth > window.outerWidth ? window.screen.availWidth: window.outerWidth;
+			let csmhDeviceWidth1 = window.outerWidth;
+			console.log("csmhDeviceWidth (JJ): " + csmhDeviceWidth);
+      console.log("csmhDeviceWidth1 (outer): " + csmhDeviceWidth1);
+      console.log("csmhFrameElement.width: " + csmhFrameElement.width);
+      console.log("csmhFrameElement.parentElement.clientWidth: " + csmhFrameElement.parentElement.clientWidth);
+
+			if(csmhFrameElement && csmhFrameElement.nodeName == "IFRAME"){
+				if(csmhFrameElement.width == 360 && csmhFrameElement.height == 500){
+          console.log("start condition 1");
+					csmhFrameElement.width = csmhDeviceWidth;
+				}
+				//else if(csmhFrameElement.width > csmhFrameElement.parentElement.clientWidth && csmhFrameElement.parentElement.clientWidth > 300){
+				else if(csmhFrameElement.parentElement.clientWidth > 300){          
+					console.log("start condition 2");
+					//csmhFrameElement.width = csmhFrameElement.parentElement.clientWidth - widthOffset;
+					csmhFrameElement.width = csmhFrameElement.parentElement.clientWidth;
+				}
+			}
+		}
+ 
+		function csmhRemoveRating() {
+      console.log("remove func called")      
+			document.getElementById("rating-box").style.display = "none";
+			document.getElementById("rating-header").style.display = "none";
+			document.getElementById("rating-input").style.display = "none";
+			document.getElementById("rating-100").style.display = "none";
+		}
+    </script>
+ </body>
+</html>
