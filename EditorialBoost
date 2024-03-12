@@ -237,109 +237,91 @@
         color: #007CC2;
       }
 
-      .cover {object-fit: cover;}     
+      .cover {object-fit: cover;}
 
       a {text-decoration: none;}
 
-    </style>  
+    </style>
  </head>
-  
+
  <body>
     <div class="creative-container" id="creative-container">
-    <!--a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" target="_blank"-->      
+    <!--a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" target="_blank"-->
       <div class="image-box">
         <div class="review-box">[%ArticleType%]</div>
-        <img class="cover" src="https://tpc.googlesyndication.com/simgad/12752986193293066251?" alt="Image" width="100%" height="100%">        
+        <img class="cover" src="[%Image%]" alt="Image" width="100%" height="100%">
       </div>
-      
+
       <div class="text-box">
         <div class="headline-rating-container">
-          <div class="headline-text">[%HeadlineText%]LDV T60 Max</div>
+          <div class="headline-text">[%HeadlineText%]</div>
           <div class="rating-box" id="rating-box" >
             <span class="rating-header" id="rating-header" > Expert Rating</span> <br>
-            <span class="rating-input" id="rating-input" >78</span>
+            <span class="rating-input" id="rating-input" >[%Rating%]</span>
             <span class="rating-100" id="rating-100" > /100</span>
           </div>
-        </div>  
-        <div class="body-text">[%BodyText%]LDV T60 Max ute comes in for MY23 update that pushes up pricing for one of the most </div>
+        </div>
+        <div class="body-text">[%BodyText%]</div>
       </div>
-    
+
       <div class="footer-box">
-            
-        <img class="authorImage" src="https://editorial.pxcrush.net/carsales/general/editorial/profile-sam-charlwood.jpg" alt="authorImage">
+        <img class="authorImage" src="[%authorImage%]" alt="authorImage">
         <span class="sponsored"> [%Author%]<br> [%Promoted%]</span>
-         <a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" target="_blank">  
-          <button class="cta-button" onclick="placeholder">Read more</button>           
+         <a href="%%CLICK_URL_UNESC%%%%DEST_URL%%" target="_blank">
+          <button class="cta-button" onclick="placeholder">Read more</button>
         </a>
-      </div>      
+      </div>
     <!--/a-->   
     </div>
-	<img src="[%ThirdPartyImpression%]" width="0" height ="0" style="display:none;">   
- 
+	<img src="[%ThirdPartyImpression%]" width="0" height ="0" style="display:none;">
+
 	<script>
-    console.log("start 9.59 p.m.");
-    let csmhDevice = "%%PATTERN:device%%";
-    let csmhNoRating =  "off";//"[%NoRating%]";
-    const widthOffset = 1; 
-    csmhDevice = csmhDevice.toLowerCase();
-    csmhNoRating = csmhNoRating.toLowerCase();
-
+	    let csmhDevice = "%%PATTERN:device%%";
+	    let csmhNoRating = "[%NoRating%]";
+		const widthOffset = 1;
+	    csmhDevice = csmhDevice.toLowerCase();
+	    csmhNoRating = csmhNoRating.toLowerCase();
+	
 		if(csmhNoRating == "on"){
-      csmhRemoveRating();          
-    }
-    
-    if (csmhDevice != "ios" && csmhDevice != "android") {
-      csmhResizeIframe();
-      //let listingFrameElement = document.getElementById("creative-container"); //window.frameElement; 
-      let listingFrameElement = parent.document.getElementsByClassName("iompba0 iompba3 _1lalutr1ei")[0]; //.clientWidth; 
-      console.log("listingFrameElement: " + listingFrameElement);
-      let resizeObserver = new ResizeObserver((entries) => {
-        for (entry of entries) {
-          //console.log('Height: ', entry.contentRect.height);
-          //console.log('Width:', entry.contentRect.width);
-          //console.log('boxElem Width w ParentNode:', boxElem.parentNode.clientWidth);
-          //console.log('boxElem Width:', boxElem.clientWidth);            
-          csmhResizeIframe();
-        } 
-      }); 
-      // observe the given element for changes 
-      resizeObserver.observe(listingFrameElement);    
-    }
-
+		  csmhRemoveRating();
+		}
+	
+		if (csmhDevice != "ios" && csmhDevice != "android") {
+			csmhResizeIframe();
+			let listingFrameElement = parent.document.getElementsByClassName("iompba0 iompba3 _1lalutr1ei")[0];
+			let resizeObserver = new ResizeObserver((entries) => {
+			for (entry of entries) {
+			  csmhResizeIframe();
+			}
+			});
+			// observe the given element for changes
+			resizeObserver.observe(listingFrameElement);
+		}
+	
 		function csmhResizeIframe(){
 			//expand ad to full width of screen
-      console.log("resize func called");
 			let csmhFrameElement = window.frameElement;
-			//console.log("csmhFrameElement: " + csmhFrameElement);
-      //console.log("csmhFrameElement.nodeName: "+ csmhFrameElement.nodeName);
-      let csmhDeviceWidth = window.screen.availWidth > window.outerWidth ? window.screen.availWidth: window.outerWidth;
+			let csmhDeviceWidth = window.screen.availWidth > window.outerWidth ? window.screen.availWidth: window.outerWidth;
 			let csmhDeviceWidth1 = window.outerWidth;
-			console.log("csmhDeviceWidth (JJ): " + csmhDeviceWidth);
-      console.log("csmhDeviceWidth1 (outer): " + csmhDeviceWidth1);
-      console.log("csmhFrameElement.width: " + csmhFrameElement.width);
-      console.log("csmhFrameElement.parentElement.clientWidth: " + csmhFrameElement.parentElement.clientWidth);
-
+	
 			if(csmhFrameElement && csmhFrameElement.nodeName == "IFRAME"){
 				if(csmhFrameElement.width == 360 && csmhFrameElement.height == 500){
-          console.log("start condition 1");
 					csmhFrameElement.width = csmhDeviceWidth;
 				}
 				//else if(csmhFrameElement.width > csmhFrameElement.parentElement.clientWidth && csmhFrameElement.parentElement.clientWidth > 300){
-				else if(csmhFrameElement.parentElement.clientWidth > 300){          
-					console.log("start condition 2");
+				else if(csmhFrameElement.parentElement.clientWidth > 300){
 					//csmhFrameElement.width = csmhFrameElement.parentElement.clientWidth - widthOffset;
 					csmhFrameElement.width = csmhFrameElement.parentElement.clientWidth;
 				}
 			}
 		}
- 
-		function csmhRemoveRating() {
-      console.log("remove func called")      
-			document.getElementById("rating-box").style.display = "none";
-			document.getElementById("rating-header").style.display = "none";
-			document.getElementById("rating-input").style.display = "none";
-			document.getElementById("rating-100").style.display = "none";
-		}
-    </script>
+	 
+			function csmhRemoveRating() {
+				document.getElementById("rating-box").style.display = "none";
+				document.getElementById("rating-header").style.display = "none";
+				document.getElementById("rating-input").style.display = "none";
+				document.getElementById("rating-100").style.display = "none";
+			}
+	</script>
  </body>
 </html>
